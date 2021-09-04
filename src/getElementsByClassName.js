@@ -10,10 +10,14 @@ var getElementsByClassName = function(className) {
   var nodeList = [];
 
   var findNodes = function(node) {
-
-    if (node.classList && node.classList.contains(className)) {
-      nodeList.push(node);
+    if (node.className !== undefined) {
+      var parts = node.className.split(' ');
+      if (parts.indexOf(className) >= 0) {
+        nodeList.push(node);
+      }
     }
+
+
 
     var children = node.childNodes;
     for (var i = 0; i < children.length; i++) {
